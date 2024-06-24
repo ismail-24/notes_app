@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
-import 'package:notes_app/models/note_model.dart';
-import 'package:notes_app/widgets/note_item.dart';
+import 'package:notes_app/cubits/posts_cubit/posts_cubit.dart';
+import 'package:notes_app/models/post_model.dart';
+import 'package:notes_app/widgets/post_templet.dart';
 
 class NotesListView extends StatelessWidget {
   const NotesListView({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NotesCubit, NotesState>(
+    return BlocBuilder<PostsCubit, PostsState>(
       builder: (context, state) {
-        List<NoteModel> notes =
-            BlocProvider.of<NotesCubit>(context).notes ?? [];
+        List<PostModel> posts =
+            BlocProvider.of<PostsCubit>(context).posts ?? [];
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: ListView.builder(
-            itemCount: notes.length,
+            itemCount: posts.length,
             padding: EdgeInsets.zero,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
-                child: NoteItem(
-                  note: notes[index],
+                child: PostTemplet(
+                  post: posts[index],
                 ),
               );
             },

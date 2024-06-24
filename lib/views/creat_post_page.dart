@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/add_post_cubit/add_post_cubit.dart';
 import 'package:notes_app/cubits/posts_cubit/posts_cubit.dart';
-import 'package:notes_app/widgets/add_note_form.dart';
+import 'package:notes_app/views/add_post.dart';
 
-class AddNoteBottomSheet extends StatelessWidget {
-  const AddNoteBottomSheet({
-    super.key,
-  });
+class CreatePostPage extends StatelessWidget {
+  CreatePostPage({super.key});
+  static String id = 'CreatePostPage';
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +23,9 @@ class AddNoteBottomSheet extends StatelessWidget {
         builder: (context, state) {
           return AbsorbPointer(
             absorbing: state is AddPostLoading ? true : false,
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: const SingleChildScrollView(
-                child: AddNoteForm(),
-              ),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: AddPost(),
             ),
           );
         },

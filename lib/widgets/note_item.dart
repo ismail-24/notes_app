@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
-import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/cubits/posts_cubit/posts_cubit.dart';
+import 'package:notes_app/models/post_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key, required this.note});
+  const NoteItem({super.key, required this.post});
 
-  final NoteModel note;
+  final PostModel post;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,8 +17,8 @@ class NoteItem extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return EditNoteView(
-                note: note,
+              return EditPostView(
+                post: post,
               );
             },
           ),
@@ -31,7 +31,7 @@ class NoteItem extends StatelessWidget {
           left: 16,
         ),
         decoration: BoxDecoration(
-          color: Color(note.color),
+          color: Color(post.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -39,27 +39,17 @@ class NoteItem extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                note.title,
+                post.title,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 26,
                 ),
               ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: Text(
-                  note.subTitle,
-                  style: TextStyle(
-                    color: Colors.black.withOpacity(.5),
-                    fontSize: 18,
-                  ),
-                ),
-              ),
               trailing: IconButton(
                   onPressed: () {
-                    note.delete();
+                    post.delete();
 
-                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                    BlocProvider.of<PostsCubit>(context).fetchAllNotes();
                   },
                   icon: const Icon(
                     FontAwesomeIcons.trash,
@@ -70,7 +60,7 @@ class NoteItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 24),
               child: Text(
-                note.date,
+                post.date,
                 style: TextStyle(
                     color: Colors.black.withOpacity(.4), fontSize: 16),
               ),

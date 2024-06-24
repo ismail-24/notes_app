@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
-import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/models/post_model.dart';
 import 'package:notes_app/widgets/colors_list_view.dart';
 
 class EditNoteColorsList extends StatefulWidget {
@@ -9,7 +9,7 @@ class EditNoteColorsList extends StatefulWidget {
     required this.note,
   });
 
-  final NoteModel note;
+  final PostModel note;
   @override
   State<EditNoteColorsList> createState() => _EditNoteColorsListState();
 }
